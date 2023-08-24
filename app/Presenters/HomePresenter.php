@@ -129,7 +129,6 @@ class HomePresenter extends Nette\Application\UI\Presenter
      */
     public function translateFromPigLatin(string $translateWord): string
     {
-        $result = '';
         $words = explode(self::SEPARATOR, $translateWord);
 
         if ($words[1] == self::VOWELS_ADD_CHARS) {
