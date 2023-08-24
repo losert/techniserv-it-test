@@ -53,11 +53,6 @@ class HomePresenter extends Nette\Application\UI\Presenter
     public const SEPARATOR = '-';
 
     /**
-     * character to split words for translation to english
-     */
-    public const SPACE = ' ';
-
-    /**
      * additional characters for consonant
      */
     public const CONSONANT_ADD_CHARS = 'ay';
@@ -80,8 +75,7 @@ class HomePresenter extends Nette\Application\UI\Presenter
 
         if (isset($_GET["word"])) {
             $orginalWord = $_GET["word"];
-            if (!str_contains($orginalWord, self::SPACE)) {
-
+            if(!preg_match('/[^a-zA-Z\-]/', $orginalWord)){
                 $pigLatinWords = [];
                 if (!str_contains($orginalWord, self::SEPARATOR)) {
                     $pigLatinWords[] = $this->translateToPigLatin(strtolower($orginalWord));
@@ -89,8 +83,8 @@ class HomePresenter extends Nette\Application\UI\Presenter
                 } else {
                     $translateWord = $this->translateFromPigLatin(strtolower($orginalWord));
                 }
-            } else {
-                $error = 'Zadejte pouze jedno slovo';
+            }else{
+                $error = 'Zadej 1 anglické slovo, které obsahuje pouze znaky a-z!';
             }
         }
 

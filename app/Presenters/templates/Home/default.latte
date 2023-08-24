@@ -12,10 +12,12 @@
 		<button type="submit">Přeložit</button>
 	</form>
 	<br />
+	{$error}
 
+	{if $error === ''}
 	<h2>Překlad</h2>
 	{$orginalWord} -> {$translateWord}
-	{$error}
+	{/if}
 </div>
 
 <style>
